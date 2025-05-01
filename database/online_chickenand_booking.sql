@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 27. Apr 2025 um 11:52
--- Server-Version: 10.4.32-MariaDB
--- PHP-Version: 8.2.12
+-- Generation Time: May 01, 2025 at 11:49 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `online_chickenand_booking`
+-- Database: `online_chickenand_booking`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tblboda`
+-- Table structure for table `tblboda`
 --
 
 CREATE TABLE `tblboda` (
@@ -41,7 +41,7 @@ CREATE TABLE `tblboda` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tblbooking`
+-- Table structure for table `tblbooking`
 --
 
 CREATE TABLE `tblbooking` (
@@ -65,7 +65,7 @@ CREATE TABLE `tblbooking` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tblcomment`
+-- Table structure for table `tblcomment`
 --
 
 CREATE TABLE `tblcomment` (
@@ -82,7 +82,7 @@ CREATE TABLE `tblcomment` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tblpayment`
+-- Table structure for table `tblpayment`
 --
 
 CREATE TABLE `tblpayment` (
@@ -99,7 +99,7 @@ CREATE TABLE `tblpayment` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tblservice`
+-- Table structure for table `tblservice`
 --
 
 CREATE TABLE `tblservice` (
@@ -118,7 +118,7 @@ CREATE TABLE `tblservice` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tbluser`
+-- Table structure for table `tbluser`
 --
 
 CREATE TABLE `tbluser` (
@@ -141,25 +141,28 @@ CREATE TABLE `tbluser` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `tbluser`
+-- Dumping data for table `tbluser`
 --
 
 INSERT INTO `tbluser` (`ID`, `name`, `gender`, `address`, `phone`, `user_type`, `is_deleted`, `status`, `created_by`, `profile_pic`, `positon`, `card_id`, `email`, `password`, `create_at`, `update_at`) VALUES
-(2, 'ABDULWAHID ALI ISSA', 'Male', 'FUONI MELITANO', '0772645905', 1, 0, 0, 0, 'IMG-20230119-WA0000.jpg', NULL, NULL, 'abdullwahidaliy9@gmail.com', '80d40f1df7efab7c1e38b0cc835291d3', '2025-04-27 09:28:32', '2025-04-27 09:12:44');
+(8, 'ABDULWAHID ALI ISSA', 'Male', 'FUONI', '0772645905', 1, 0, 0, 0, 'IMG-20230119-WA0000.jpg', NULL, NULL, 'abdullwahidaliy9@gmail.com', '80d40f1df7efab7c1e38b0cc835291d3', '2025-05-01 09:13:34', '2025-05-01 09:13:34'),
+(9, 'ILHAM MALIK MOHAMEND', 'Female', 'TOMONDO', '088789564', 2, 0, 0, 8, 'little-girl-thinking-book-read.jpg', 'admin', '12345678932', 'ilhammalik90@gmail.com', '25d55ad283aa400af464c76d713c07ad', '2025-05-01 09:15:32', '2025-05-01 09:15:32'),
+(10, 'KASSIM BAKAR HAJI ', 'Male', 'NYARUGUSU', '0774567890', 2, 0, 0, 8, 'download.jpeg', 'admin2', '696969495994', 'kassimbakari.ni@gmail.com', '25d55ad283aa400af464c76d713c07ad', '2025-05-01 09:42:08', '2025-05-01 09:42:08'),
+(11, 'haji juma', 'Male', 'mwera', '077567890', 1, 0, 0, 0, NULL, NULL, NULL, 'abdullwahidaliy91@gmail.com', '80d40f1df7efab7c1e38b0cc835291d3', '2025-05-01 09:44:45', '2025-05-01 09:44:25');
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `tblboda`
+-- Indexes for table `tblboda`
 --
 ALTER TABLE `tblboda`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indizes für die Tabelle `tblbooking`
+-- Indexes for table `tblbooking`
 --
 ALTER TABLE `tblbooking`
   ADD PRIMARY KEY (`ID`),
@@ -169,83 +172,84 @@ ALTER TABLE `tblbooking`
   ADD KEY `paymnt_id` (`paymnt_id`);
 
 --
--- Indizes für die Tabelle `tblcomment`
+-- Indexes for table `tblcomment`
 --
 ALTER TABLE `tblcomment`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indizes für die Tabelle `tblpayment`
+-- Indexes for table `tblpayment`
 --
 ALTER TABLE `tblpayment`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `paymentID` (`paymentID`);
 
 --
--- Indizes für die Tabelle `tblservice`
+-- Indexes for table `tblservice`
 --
 ALTER TABLE `tblservice`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indizes für die Tabelle `tbluser`
+-- Indexes for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `created_by` (`created_by`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `tblboda`
+-- AUTO_INCREMENT for table `tblboda`
 --
 ALTER TABLE `tblboda`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `tblbooking`
+-- AUTO_INCREMENT for table `tblbooking`
 --
 ALTER TABLE `tblbooking`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `tblcomment`
+-- AUTO_INCREMENT for table `tblcomment`
 --
 ALTER TABLE `tblcomment`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `tblpayment`
+-- AUTO_INCREMENT for table `tblpayment`
 --
 ALTER TABLE `tblpayment`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `tblservice`
+-- AUTO_INCREMENT for table `tblservice`
 --
 ALTER TABLE `tblservice`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `tbluser`
+-- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Constraints der exportierten Tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Constraints der Tabelle `tblboda`
+-- Constraints for table `tblboda`
 --
 ALTER TABLE `tblboda`
   ADD CONSTRAINT `tblboda_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbluser` (`ID`);
 
 --
--- Constraints der Tabelle `tblbooking`
+-- Constraints for table `tblbooking`
 --
 ALTER TABLE `tblbooking`
   ADD CONSTRAINT `tblbooking_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `tbluser` (`ID`),
@@ -253,13 +257,13 @@ ALTER TABLE `tblbooking`
   ADD CONSTRAINT `tblbooking_ibfk_3` FOREIGN KEY (`bodaID`) REFERENCES `tbluser` (`ID`);
 
 --
--- Constraints der Tabelle `tblpayment`
+-- Constraints for table `tblpayment`
 --
 ALTER TABLE `tblpayment`
   ADD CONSTRAINT `tblpayment_ibfk_1` FOREIGN KEY (`paymentID`) REFERENCES `tblbooking` (`paymnt_id`);
 
 --
--- Constraints der Tabelle `tblservice`
+-- Constraints for table `tblservice`
 --
 ALTER TABLE `tblservice`
   ADD CONSTRAINT `tblservice_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbluser` (`ID`);

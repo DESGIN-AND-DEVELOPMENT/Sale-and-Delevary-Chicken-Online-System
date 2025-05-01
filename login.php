@@ -1,8 +1,7 @@
 <?php
-// Start session
 session_start();
 error_reporting(0);
-// Database connection
+
 $connection = mysqli_connect("localhost", "root", "", "online_chickenand_booking");
 
 if (!$connection) {
@@ -10,42 +9,47 @@ if (!$connection) {
 }
 
 if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = md5($_POST['password']);  // Encrypt password
-    
-    // Query to check the user credentials
+    $email = mysqli_real_escape_string($connection, $_POST['email']);
+    $password = md5($_POST['password']); // Tafadhali badilisha kwa password_hash() baadaye kwa usalama zaidi
+
     $query = "SELECT * FROM tbluser WHERE email = '$email' AND password = '$password'";
     $result = mysqli_query($connection, $query);
-    
+
     if (mysqli_num_rows($result) > 0) {
-        // User found, get user data
         $user = mysqli_fetch_assoc($result);
-        
-        // Set session based on user_type
-        switch ($user['user_type']) {
-            case 1:
-                $_SESSION['super'] = $user['email'];
-                header("Location: super/super_dashboard.php");  // Redirect to super user dashboard
-                break;
-            case 2:
-                $_SESSION['admin'] = $user['email'];
-                header("Location: admin/admin_dashboard.php");  // Redirect to admin dashboard
-                break;
-            case 3:
-                $_SESSION['employee'] = $user['email'];
-                header("Location: employee/employee_dashboard.php");  // Redirect to employee dashboard
-                break;
-            case 4:
-                $_SESSION['bodaboda'] = $user['email'];
-                header("Location: bodaboda/bodaboda_dashboard.php");  // Redirect to bodaboda dashboard
-                break;
-            case 5:
-                $_SESSION['enduser'] = $user['email'];
-                header("Location: index.php");  // Redirect to enduser dashboard
-                break;
-            default:
-                echo "Invalid user type.";
-                break;
+
+        // Check user status
+        if ($user['status'] != 0) {
+            echo "Your account is inactive or blocked. Please contact the administrator.";
+        } else {
+            // Set session and redirect
+            $_SESSION['user_id'] = $user['ID'];
+
+            switch ($user['user_type']) {
+                case 1:
+                    $_SESSION['super'] = $user['email'];
+                    header("Location: super/super_dashboard.php");
+                    break;
+                case 2:
+                    $_SESSION['admin'] = $user['email'];
+                    header("Location: admin/admin_dashboard.php");
+                    break;
+                case 3:
+                    $_SESSION['employee'] = $user['email'];
+                    header("Location: employee/employee_dashboard.php");
+                    break;
+                case 4:
+                    $_SESSION['bodaboda'] = $user['email'];
+                    header("Location: bodaboda/bodaboda_dashboard.php");
+                    break;
+                case 5:
+                    $_SESSION['enduser'] = $user['email'];
+                    header("Location: index.php");
+                    break;
+                default:
+                    echo "Invalid user type.";
+                    break;
+            }
         }
     } else {
         echo "Invalid email or password.";
@@ -54,6 +58,7 @@ if (isset($_POST['login'])) {
 
 mysqli_close($connection);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

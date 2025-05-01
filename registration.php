@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+// error_reporting(0);
 $connection = mysqli_connect("localhost","root","","online_chickenand_booking");
 
 if(isset($_POST['sign'])) {
