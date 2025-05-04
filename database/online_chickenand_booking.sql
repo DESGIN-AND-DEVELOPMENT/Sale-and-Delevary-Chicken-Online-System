@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2025 at 11:49 AM
+-- Generation Time: May 04, 2025 at 12:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -104,7 +104,7 @@ CREATE TABLE `tblpayment` (
 
 CREATE TABLE `tblservice` (
   `ID` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `servicename` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `price` varchar(255) DEFAULT NULL,
   `pic_profile` varchar(255) DEFAULT NULL,
@@ -114,6 +114,14 @@ CREATE TABLE `tblservice` (
   `user_id` int(11) NOT NULL,
   `update_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblservice`
+--
+
+INSERT INTO `tblservice` (`ID`, `servicename`, `description`, `price`, `pic_profile`, `status`, `is_deleted`, `created_at`, `user_id`, `update_at`) VALUES
+(4, 'kuku', '1kg', '8,000', 'Layer-Complete-Meal-216x300.webp', 0, 0, '2025-05-04 08:46:52', 9, '2025-05-04 08:46:52'),
+(5, 'NYAMA NOFU ', '1kg', '12,000', 'istockphoto-1357398726-612x612.jpg', 0, 0, '2025-05-04 09:24:12', 9, '2025-05-04 09:24:12');
 
 -- --------------------------------------------------------
 
@@ -230,7 +238,7 @@ ALTER TABLE `tblpayment`
 -- AUTO_INCREMENT for table `tblservice`
 --
 ALTER TABLE `tblservice`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
