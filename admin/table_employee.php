@@ -7,11 +7,11 @@ include('includes/dbconnection.php');
 $userType = isset($_SESSION['user_type']) ? (int)$_SESSION['user_type'] : 0;
 
 // Clear any previous flags
-unset($_SESSION['admin']);
+unset($_SESSION['super']);
 
-if ($userType === 2) {
+if ($userType === 1) {
     // Block access for super user
-    $_SESSION['admin'] = true;
+    $_SESSION['super'] = true;
     header('Location: logout.php');
     exit(); // important to stop further execution
 } else {
@@ -122,56 +122,60 @@ if ($userType === 2) {
 						</div><!-- end row -->
 						<div class="row no-gutters">
 							<div class="col-12 table-responsive">
-                            <table id="example" class="table table-hover responsive listing">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Img</th>
-            <th>Service</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
+								<table id="example" class="table table-hover responsive listing">
+									<thead>
+										<tr>
+                                            <th>#</th>
+											<th>Img</th>
+											
+											<th>Full Name</th>
+											<th>Gender</th>
+                                            <th>Address</th>
+                                            <th>Phone #</th>
+                                            <th>Zan ID</th>
+                                            <th>Position</th>
+											<th>Email</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+                                    <?php 
+$uid = $_SESSION['user_id'];
+$sql = "SELECT name, gender, address, phone, profile_pic, positon, card_id, email 
+        FROM tbluser 
+        WHERE is_deleted = 0 AND status = 0 AND created_by = $uid and user_type = 3";
 
-        <?php
-        $uid = $_SESSION['user_id'];
-        $sql = "SELECT tblservice.ID, tblservice.servicename, tblservice.description, tblservice.price,
-                tblservice.pic_profile, tblservice.status FROM tblservice WHERE tblservice.user_id = $uid and tblservice.is_deleted = 0";
+$sn = 0;
+$query_run = mysqli_query($connection, $sql);
 
-        $query = mysqli_query($connection, $sql);
-        $query_runn = $query->num_rows;
-        $sn = 0;
-
-        if($query_runn > 0) {
-            while($student = $query->fetch_assoc()) { 
-                $sn++;
-
-                // Prepare status text
-                $status_text = ($student['status'] == 0) ? 'Active' : 'Inactive';
-
-                echo "
-                <tr>
-                    <td>$sn</td>
-                    <td><img src='../upload/{$student['pic_profile']}' width='50' height='50' style='object-fit: cover; border-radius: 5px;'></td>
-                    <td style='text-transform: uppercase;'>{$student['servicename']}</td>
-                    <td>{$student['description']}</td>
-                    <td>{$student['price']}</td>
-                    <td>$status_text</td>
-                    <td>
-                        <a href='edit.php?id={$student['ID']}' class='btn btn-sm btn-primary'>Edit</a>
-                        <a href='delete.php?id={$student['ID']}' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\");'>Delete</a>
-                    </td>
-                </tr>";
-            }
-        }
+if (mysqli_num_rows($query_run) > 0) {
+    while ($dmin = mysqli_fetch_assoc($query_run)) {
+        $sn++;
         ?>
+        <tr>
+            <td><?php echo $sn; ?></td>
+            <td><img src="../upload/<?php echo htmlspecialchars($dmin['profile_pic']); ?>" alt="Profile" width="50" height="50"></td>
+            <td><?php echo htmlspecialchars($dmin['name']); ?></td>
+            <td><?php echo htmlspecialchars($dmin['gender']); ?></td>
+            <td><?php echo htmlspecialchars($dmin['address']); ?></td>
+            <td><?php echo htmlspecialchars($dmin['phone']); ?></td>
+            <td><?php echo htmlspecialchars($dmin['card_id']); ?></td>
+            <td><?php echo htmlspecialchars($dmin['positon']); ?></td>
+            <td><?php echo htmlspecialchars($dmin['email']); ?></td>
+            <td><a href="#" class="btn btn-primary">Edit</a>  
+            <form action="#" method="post">
+                <button class="btn btn-danger mt-3">Delete</button>
+            </form>
+        </td>
+        </tr>
+        <?php
+    }
+}
+?>
 
-    </tbody>
-</table>
-
+                                       
+                                    </tbody>
+								</table>
 							</div><!-- end column -->
 						</div><!-- end row -->
 					</div><!-- end box -->

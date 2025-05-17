@@ -35,12 +35,12 @@ if ($userType === 2) {
 					<li class="nav-item">
 						<a href="#users" class="items-list" data-bs-toggle="collapse" aria-expanded="false">
 							<span><i class="fas fa-user-tie" data-bs-toggle="tooltip" data-html="true" title="Users"></i></span>
-							<span class="items-list-text">Users</span>
+							<span class="items-list-text">Employee</span>
 							<span><i class="fa fa-chevron-down arrow"></i></span>
 						</a>
 						<div class="collapse sub-menu" id="users">
-							<a class="items-list1" href="users-create-user.html">Create User</a>
-							<a class="items-list1" href="users-list.html">List</a>
+							<a class="items-list1" href="create_employee.php">Create Employee</a>
+							<a class="items-list1" href="table_employee.php">List</a>
 						</div><!-- End sub-menu -->
 					</li>
 					<li class="nav-item">

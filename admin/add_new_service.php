@@ -98,7 +98,7 @@ if ($userType === 2) {
 	<div class="wrapper">
 
 		<!-- ===========Top-Bar============= -->
-        <?php include('includes/headerbar.php');?><!-- End top-bar -->
+        <?php include('includes/header.php');?><!-- End top-bar -->
 
 <!-- =========== sidebar-left ============= -->
 <?php include('includes/sidebar.php');?><!-- End sidebar-left -->
