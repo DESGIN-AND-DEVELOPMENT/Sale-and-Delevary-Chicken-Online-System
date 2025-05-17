@@ -107,7 +107,7 @@ if ($userType === 1) {
 						<div class="row no-gutters">
 							<div class="col-auto me-auto text-start pe-0">
 								<div class="add-new">
-									<a href="users-create-user.html">Add New<i class="fas fa-plus"></i></a>
+									<a href="create_employee.php">Add New Employee<i class="fas fa-plus"></i></a>
 								</div><!-- End add-new-->
 							</div><!-- End column-->
 							<div class="col text-end">

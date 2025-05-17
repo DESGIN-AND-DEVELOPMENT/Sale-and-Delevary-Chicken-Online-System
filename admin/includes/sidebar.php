@@ -26,7 +26,7 @@ if ($userType === 2) {
 			<div class="side-menu">
 				<ul class="navbar-nav">
 					<li class="nav-item" id="dashboard-link">
-						<a href="index.html" class="items-list first active">
+						<a href="admin_dashboard.php" class="items-list first active">
 							<span><i class="fa fa-home link-icon" data-bs-toggle="tooltip" data-html="true"
 									title="Dashboard"></i></span>
 							<span class="items-list-text">Dashboard</span>
